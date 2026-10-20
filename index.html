@@ -3,26 +3,26 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#d71920">
   <meta name="description" content="ParoleLycéenne : les lycéens proposent, débattent et votent pour améliorer la vie au lycée.">
-
   <title>ParoleLycéenne — La parole aux lycéens</title>
-  <link rel="icon" type="image/png" href="logo.png">
-  <link rel="apple-touch-icon" href="logo.png">
+
+  <!-- Logo du site et icône de l'onglet -->
+  <link rel="icon" href="logo">
+  <link rel="apple-touch-icon" href="logo">
 
   <style>
     :root {
       --red: #d71920;
-      --red-dark: #a90e16;
-      --black: #151515;
+      --dark-red: #a90e16;
+      --black: #171717;
       --white: #fff;
-      --grey: #f4f4f4;
+      --grey: #f5f5f5;
       --muted: #707070;
       --border: #e5e5e5;
       --green: #16834a;
-      --radius: 18px;
-      --shadow: 0 8px 28px rgba(0,0,0,.07);
+      --neutral: #777;
     }
 
     * { box-sizing: border-box; }
@@ -31,56 +31,52 @@
 
     body {
       margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
       color: var(--black);
       background: #fafafa;
-      font-family: Inter, Arial, Helvetica, sans-serif;
       line-height: 1.6;
     }
 
     button, input, select, textarea { font: inherit; }
     button { cursor: pointer; }
-
     a { color: inherit; }
 
     .topbar {
       position: sticky;
       top: 0;
-      z-index: 20;
+      z-index: 10;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 20px;
-      padding: 12px max(5%, calc((100% - 1200px) / 2));
-      background: rgba(255,255,255,.96);
+      align-items: center;
+      gap: 18px;
+      padding: 12px max(5%, calc((100% - 1200px)/2));
+      background: rgba(255,255,255,.97);
       border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(12px);
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 11px;
+      gap: 10px;
       text-decoration: none;
-      font-weight: 900;
       font-size: 1.2rem;
-      letter-spacing: -.6px;
+      font-weight: 900;
+      letter-spacing: -.5px;
     }
 
     .brand img {
-      display: block;
-      width: 43px;
-      height: 43px;
+      width: 44px;
+      height: 44px;
       object-fit: contain;
-      border-radius: 10px;
     }
 
-    .brand span span { color: var(--red); }
+    .brand-name span { color: var(--red); }
 
     .nav {
       display: flex;
       align-items: center;
-      gap: 22px;
-      font-size: .92rem;
+      gap: 20px;
+      font-size: .9rem;
       font-weight: 700;
     }
 
@@ -88,49 +84,34 @@
     .nav a:hover { color: var(--red); }
 
     .hero {
-      position: relative;
-      overflow: hidden;
-      color: white;
       background: var(--red);
-      padding: 76px 6% 70px;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      width: 380px;
-      height: 380px;
-      right: -100px;
-      top: -150px;
-      border: 65px solid rgba(255,255,255,.09);
-      border-radius: 50%;
-      pointer-events: none;
+      color: white;
+      padding: 76px 24px 72px;
+      overflow: hidden;
     }
 
     .hero-content {
-      max-width: 1200px;
+      max-width: 1150px;
       margin: auto;
-      position: relative;
-      z-index: 1;
     }
 
     .eyebrow {
       display: inline-block;
-      padding: 6px 12px;
-      border: 1px solid rgba(255,255,255,.5);
-      border-radius: 99px;
-      font-size: .8rem;
+      border: 1px solid rgba(255,255,255,.65);
+      border-radius: 50px;
+      padding: 5px 12px;
+      font-size: .78rem;
       font-weight: 800;
-      letter-spacing: 1px;
       text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     .hero h1 {
-      max-width: 820px;
+      max-width: 850px;
       margin: 22px 0 16px;
-      font-size: clamp(2.4rem, 6vw, 5rem);
-      line-height: .99;
-      letter-spacing: -3px;
+      font-size: clamp(2.6rem, 7vw, 5rem);
+      line-height: 1;
+      letter-spacing: -2px;
       font-weight: 950;
     }
 
@@ -139,7 +120,7 @@
     .hero p {
       max-width: 650px;
       font-size: 1.08rem;
-      color: rgba(255,255,255,.93);
+      color: #fff;
     }
 
     .hero-actions {
@@ -151,31 +132,28 @@
 
     .btn {
       display: inline-flex;
-      justify-content: center;
       align-items: center;
-      gap: 8px;
-      padding: 12px 19px;
+      justify-content: center;
+      padding: 12px 18px;
       border: 0;
       border-radius: 10px;
-      font-weight: 800;
       text-decoration: none;
-      transition: transform .15s, opacity .15s;
+      font-weight: 800;
+      transition: transform .15s;
     }
 
     .btn:hover { transform: translateY(-2px); }
-    .btn:disabled { cursor: not-allowed; opacity: .5; transform: none; }
-
-    .btn-white { color: var(--black); background: white; }
-    .btn-black { color: white; background: var(--black); }
-    .btn-red { color: white; background: var(--red); }
-    .btn-outline { color: var(--black); background: white; border: 1px solid var(--border); }
+    .btn:disabled { opacity: .55; cursor: wait; transform: none; }
+    .btn-white { background: white; color: var(--black); }
+    .btn-black { background: var(--black); color: white; }
+    .btn-red { background: var(--red); color: white; }
+    .btn-outline { background: white; border: 1px solid var(--border); }
 
     .stats-wrap {
-      max-width: 1200px;
-      margin: -25px auto 0;
-      padding: 0 24px;
       position: relative;
-      z-index: 2;
+      max-width: 1150px;
+      margin: -24px auto 0;
+      padding: 0 20px;
     }
 
     .stats {
@@ -183,54 +161,43 @@
       grid-template-columns: repeat(3, 1fr);
       background: white;
       border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
+      border-radius: 16px;
+      box-shadow: 0 8px 25px #0000000b;
       overflow: hidden;
     }
 
-    .stat {
-      padding: 22px;
-      text-align: center;
-    }
-
+    .stat { text-align: center; padding: 20px 8px; }
     .stat + .stat { border-left: 1px solid var(--border); }
-
-    .stat strong {
-      display: block;
-      font-size: 1.8rem;
-      line-height: 1.2;
-      font-weight: 950;
-    }
-
+    .stat strong { display: block; font-size: 1.8rem; line-height: 1.3; }
     .stat span { color: var(--muted); font-size: .85rem; }
 
     main {
-      max-width: 1200px;
-      padding: 56px 24px 80px;
+      max-width: 1150px;
       margin: auto;
+      padding: 55px 20px 75px;
     }
 
-    .section-heading {
+    .heading {
       display: flex;
-      align-items: end;
       justify-content: space-between;
+      align-items: end;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 16px;
       margin-bottom: 22px;
     }
 
-    .section-heading h2 {
+    .heading h2 {
       margin: 0;
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
-      letter-spacing: -1.2px;
-      line-height: 1.15;
+      font-size: clamp(1.9rem, 4vw, 2.7rem);
+      line-height: 1.2;
+      letter-spacing: -1px;
     }
 
-    .section-heading p { margin: 8px 0 0; color: var(--muted); }
+    .heading p { margin: 8px 0 0; color: var(--muted); }
 
     .toolbar {
       display: grid;
-      grid-template-columns: minmax(180px, 1fr) minmax(150px, 220px) minmax(150px, 200px);
+      grid-template-columns: 1fr 210px 190px;
       gap: 12px;
       margin: 24px 0;
     }
@@ -238,15 +205,17 @@
     .field {
       width: 100%;
       min-width: 0;
-      padding: 12px 14px;
-      color: var(--black);
-      background: white;
-      border: 1px solid #dcdcdc;
+      padding: 12px 13px;
+      border: 1px solid #ddd;
       border-radius: 10px;
-      outline: none;
+      background: white;
+      color: var(--black);
     }
 
-    .field:focus { border-color: var(--red); box-shadow: 0 0 0 3px rgba(215,25,32,.1); }
+    .field:focus {
+      outline: 2px solid #d7192030;
+      border-color: var(--red);
+    }
 
     .proposals {
       display: grid;
@@ -254,138 +223,126 @@
       gap: 20px;
     }
 
-    .proposal-card {
+    .card {
       min-width: 0;
       display: flex;
       flex-direction: column;
+      overflow: hidden;
       background: white;
       border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: 0 3px 12px rgba(0,0,0,.025);
-      overflow: hidden;
-      transition: transform .2s, box-shadow .2s;
-    }
-
-    .proposal-card:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow);
+      border-radius: 17px;
+      box-shadow: 0 3px 12px #00000005;
     }
 
     .card-top {
-      padding: 23px 23px 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 10px;
+      padding: 22px 22px 0;
     }
 
-    .proposal-number {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
+    .number {
+      display: grid;
+      place-items: center;
       width: 39px;
       height: 39px;
-      color: white;
+      border-radius: 10px;
       background: var(--black);
-      border-radius: 11px;
+      color: white;
       font-weight: 900;
       flex-shrink: 0;
     }
 
     .category {
-      display: inline-block;
-      color: var(--red-dark);
       background: #fff0f0;
-      border-radius: 99px;
+      color: var(--dark-red);
+      border-radius: 50px;
       padding: 5px 10px;
       font-size: .75rem;
       font-weight: 800;
     }
 
-    .card-content { padding: 15px 23px 22px; flex: 1; }
+    .card-content { padding: 15px 22px 20px; flex: 1; }
+    .card h3 { margin: 0 0 10px; font-size: 1.35rem; line-height: 1.25; }
+    .intro { color: #505050; margin: 0 0 15px; }
 
-    .card-content h3 {
-      margin: 0 0 10px;
-      font-size: 1.35rem;
-      line-height: 1.25;
-      letter-spacing: -.5px;
-    }
-
-    .intro { color: #4f4f4f; margin: 0 0 18px; }
-
-    .details {
+    details {
       border-top: 1px solid var(--border);
-      padding-top: 14px;
-      margin-top: 14px;
+      padding-top: 12px;
+      margin-top: 12px;
     }
 
-    .details summary {
-      cursor: pointer;
-      font-weight: 800;
-      font-size: .9rem;
-    }
-
-    .details-body { padding-top: 10px; font-size: .91rem; }
-
-    .details-body p { margin: 8px 0; }
-    .details-body strong { color: var(--red-dark); }
+    summary { cursor: pointer; font-weight: 800; font-size: .9rem; }
+    .detail-text { padding-top: 8px; font-size: .9rem; }
+    .detail-text p { margin: 8px 0; }
+    .detail-text strong { color: var(--dark-red); }
 
     .vote-area {
-      padding: 18px 23px;
+      padding: 17px 22px;
       background: #fcfcfc;
       border-top: 1px solid var(--border);
     }
 
     .vote-heading {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 10px;
+      align-items: center;
+      gap: 8px;
       margin-bottom: 12px;
-      font-weight: 800;
       font-size: .9rem;
+      font-weight: 800;
     }
 
-    .vote-counts { color: var(--muted); font-size: .82rem; font-weight: 600; }
+    .vote-counts { color: var(--muted); font-size: .8rem; }
 
     .vote-bar {
-      height: 7px;
       display: flex;
+      width: 100%;
+      height: 8px;
       overflow: hidden;
-      background: #e7e7e7;
-      border-radius: 99px;
+      border-radius: 50px;
+      background: #eee;
       margin-bottom: 14px;
     }
 
-    .vote-yes { background: var(--green); transition: width .25s; }
-    .vote-no { background: var(--red); flex: 1; }
+    .vote-yes { background: var(--green); }
+    .vote-neutral { background: #929292; }
+    .vote-no { background: var(--red); }
 
-    .vote-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .vote-buttons {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
 
     .vote-button {
-      padding: 10px;
-      border-radius: 9px;
+      min-width: 0;
+      padding: 10px 3px;
       border: 1px solid var(--border);
+      border-radius: 9px;
       background: white;
+      font-size: .88rem;
       font-weight: 800;
     }
 
     .vote-button.yes { color: var(--green); }
+    .vote-button.neutral { color: #666; }
     .vote-button.no { color: var(--red); }
 
-    .vote-button.selected.yes { color: white; background: var(--green); border-color: var(--green); }
-    .vote-button.selected.no { color: white; background: var(--red); border-color: var(--red); }
+    .vote-button.yes.selected { background: var(--green); color: white; }
+    .vote-button.neutral.selected { background: var(--neutral); color: white; }
+    .vote-button.no.selected { background: var(--red); color: white; }
 
-    .vote-note { margin: 10px 0 0; color: var(--muted); font-size: .78rem; }
+    .vote-note { margin: 10px 0 0; color: var(--muted); font-size: .77rem; }
 
     .comments {
-      padding: 19px 23px 23px;
+      padding: 19px 22px 22px;
       border-top: 1px solid var(--border);
     }
 
-    .comments h4 { margin: 0 0 14px; font-size: 1rem; }
-
-    .comment-list { display: grid; gap: 10px; margin-bottom: 16px; }
+    .comments h4 { margin: 0 0 13px; font-size: 1rem; }
+    .comment-list { display: grid; gap: 9px; margin-bottom: 15px; }
 
     .comment {
       padding: 11px 12px;
@@ -394,22 +351,22 @@
       overflow-wrap: anywhere;
     }
 
-    .comment strong { font-size: .84rem; }
-    .comment time { margin-left: 7px; color: var(--muted); font-size: .72rem; }
-    .comment p { margin: 5px 0 0; font-size: .9rem; white-space: pre-wrap; }
-
-    .empty-comments { color: var(--muted); font-size: .85rem; }
+    .comment strong { font-size: .85rem; }
+    .comment time { margin-left: 6px; color: var(--muted); font-size: .72rem; }
+    .comment p { margin: 5px 0 0; white-space: pre-wrap; font-size: .9rem; }
+    .empty { color: var(--muted); font-size: .85rem; }
 
     .comment-form { display: grid; gap: 9px; }
-    .comment-form textarea { resize: vertical; min-height: 78px; }
+    .comment-form textarea { min-height: 76px; resize: vertical; }
     .comment-form .btn { justify-self: start; }
 
     .notice {
-      margin: 18px 0;
-      padding: 14px 16px;
-      border-radius: 12px;
-      background: #fff4df;
-      color: #66420a;
+      margin: 15px 0;
+      padding: 13px 15px;
+      border-radius: 10px;
+      background: #fff2d9;
+      color: #704900;
+      overflow-wrap: anywhere;
       font-size: .9rem;
     }
 
@@ -418,64 +375,58 @@
     .hidden { display: none !important; }
 
     .about {
-      margin-top: 70px;
-      padding: 35px;
+      margin-top: 65px;
+      padding: 32px;
+      border-radius: 17px;
       background: var(--black);
       color: white;
-      border-radius: var(--radius);
     }
 
     .about h2 { margin: 0 0 10px; font-size: 2rem; }
-    .about p { color: #d5d5d5; max-width: 760px; }
+    .about p { max-width: 800px; color: #ddd; }
     .about strong { color: white; }
 
     footer {
-      padding: 30px 24px;
-      color: #cfcfcf;
+      padding: 28px 20px;
       background: #101010;
+      color: #ccc;
       text-align: center;
       font-size: .85rem;
     }
 
-    footer a { color: white; }
-
-    .loading { padding: 35px; text-align: center; color: var(--muted); }
+    footer p { margin: 5px; }
 
     @media (max-width: 780px) {
-      .topbar { padding: 10px 18px; }
+      .topbar { padding: 10px 16px; }
       .nav { gap: 12px; font-size: .82rem; }
-      .nav .nav-extra { display: none; }
-      .hero { padding: 58px 24px 55px; }
-      .hero h1 { letter-spacing: -1.5px; }
+      .nav .extra { display: none; }
+      .hero { padding: 56px 22px; }
+      .hero h1 { letter-spacing: -1px; }
+      main { padding: 40px 14px 55px; }
       .proposals { grid-template-columns: 1fr; }
       .toolbar { grid-template-columns: 1fr; }
-      main { padding: 42px 16px 60px; }
-      .stats-wrap { padding: 0 14px; }
-      .stat { padding: 17px 8px; }
-      .stat strong { font-size: 1.5rem; }
-      .stat span { font-size: .75rem; }
-      .about { padding: 25px; }
+      .about { padding: 23px; }
     }
 
     @media (max-width: 390px) {
       .brand { font-size: 1rem; }
       .brand img { width: 36px; height: 36px; }
-      .nav { gap: 9px; }
-      .hero h1 { font-size: 2.4rem; }
-      .card-content, .card-top, .vote-area, .comments { padding-left: 17px; padding-right: 17px; }
+      .nav { gap: 8px; }
+      .vote-button { font-size: .8rem; }
     }
   </style>
 </head>
 
 <body>
   <header class="topbar">
-    <a class="brand" href="#" aria-label="ParoleLycéenne, accueil">
-      <img src="logo.png" alt="Logo ParoleLycéenne">
-      <span>Parole<span>Lycéenne</span></span>
+    <a class="brand" href="#" aria-label="Accueil ParoleLycéenne">
+      <img src="logo" alt="Logo ParoleLycéenne">
+      <span class="brand-name">Parole<span>Lycéenne</span></span>
     </a>
-    <nav class="nav" aria-label="Navigation principale">
+
+    <nav class="nav" aria-label="Navigation">
       <a href="#propositions">Propositions</a>
-      <a href="#fonctionnement" class="nav-extra">Le projet</a>
+      <a href="#projet" class="extra">Le projet</a>
       <a href="#propositions" class="btn btn-black">Je participe</a>
     </nav>
   </header>
@@ -486,11 +437,11 @@
       <h1>LE LYCÉE, C'EST AUSSI <span>NOTRE AFFAIRE.</span></h1>
       <p>
         Tes journées, tes cours, tes conditions de travail : tu as ton mot à dire.
-        Découvre des propositions pour améliorer la vie au lycée, vote et explique ton point de vue.
+        Découvre des propositions, vote et explique ton point de vue.
       </p>
       <div class="hero-actions">
         <a class="btn btn-white" href="#propositions">Découvrir les propositions ↓</a>
-        <a class="btn btn-black" href="#fonctionnement">Comment ça marche ?</a>
+        <a class="btn btn-black" href="#projet">Comment ça marche ?</a>
       </div>
     </div>
   </section>
@@ -502,11 +453,11 @@
         <span>propositions</span>
       </div>
       <div class="stat">
-        <strong id="statVotes">—</strong>
+        <strong id="statVotes">0</strong>
         <span>votes enregistrés</span>
       </div>
       <div class="stat">
-        <strong id="statComments">—</strong>
+        <strong id="statComments">0</strong>
         <span>commentaires publiés</span>
       </div>
     </div>
@@ -514,18 +465,20 @@
 
   <main>
     <section id="propositions">
-      <div class="section-heading">
+      <div class="heading">
         <div>
           <h2>Les propositions.</h2>
-          <p>Lis, compare, vote. Chaque avis compte.</p>
+          <p>Lis, compare et vote. Chaque avis compte.</p>
         </div>
       </div>
 
-      <div id="connectionNotice" class="notice hidden" role="status"></div>
+      <div id="notice" class="notice hidden" role="status"></div>
 
       <div class="toolbar">
-        <input class="field" id="searchInput" type="search" placeholder="Rechercher une proposition…" aria-label="Rechercher une proposition">
-        <select class="field" id="categoryFilter" aria-label="Filtrer par catégorie">
+        <input class="field" id="searchInput" type="search"
+          placeholder="Rechercher une proposition…" aria-label="Rechercher">
+
+        <select class="field" id="categoryFilter" aria-label="Catégorie">
           <option value="all">Toutes les catégories</option>
           <option value="Organisation">Organisation</option>
           <option value="Apprentissage">Apprentissage</option>
@@ -534,75 +487,60 @@
           <option value="Démocratie">Démocratie</option>
           <option value="Orientation">Orientation</option>
         </select>
-        <select class="field" id="sortSelect" aria-label="Trier les propositions">
+
+        <select class="field" id="sortSelect" aria-label="Trier">
           <option value="default">Ordre initial</option>
           <option value="votes">Les plus votées</option>
-          <option value="comments">Les plus commentées</option>
           <option value="yes">Les plus soutenues</option>
+          <option value="comments">Les plus commentées</option>
         </select>
       </div>
 
       <div id="proposalGrid" class="proposals">
-        <div class="loading">Chargement des propositions…</div>
+        <p>Chargement des propositions…</p>
       </div>
     </section>
 
-    <section id="fonctionnement" class="about">
+    <section id="projet" class="about">
       <h2>Ta voix a sa place.</h2>
       <p>
         <strong>ParoleLycéenne</strong> est un projet indépendant qui permet aux lycéens
-        de discuter d'idées concrètes pour améliorer leur quotidien.
-        Les votes servent à prendre le pouls des participants : ils ne représentent
-        pas automatiquement l'avis de tous les lycéens de France.
+        de débattre d'idées concrètes pour améliorer leur quotidien.
       </p>
       <p>
-        Les propositions peuvent soulever des questions de budget, d'organisation,
-        de sécurité ou de faisabilité. Le but est d'en débattre honnêtement, pas de
-        prétendre qu'une mesure est simple à mettre en place.
+        Les votes montrent les avis des participants au site. Ils ne représentent pas
+        automatiquement l'opinion de tous les lycéens de France. Une proposition peut
+        aussi rencontrer des limites de budget, d'organisation ou de faisabilité.
       </p>
       <p>
-        <strong>Règles :</strong> reste respectueux, ne partage pas d'informations personnelles
-        et argumente tes désaccords. Les commentaires publics peuvent être lus par les visiteurs.
+        <strong>Les règles :</strong> respecte les autres, n'affiche aucune information
+        personnelle et argumente tes désaccords. Les commentaires sont publics.
       </p>
     </section>
   </main>
 
   <footer>
     <p><strong>ParoleLycéenne</strong> — Le lycée, c'est aussi notre affaire.</p>
-    <p>Projet indépendant. Les votes en ligne ne constituent pas un sondage représentatif.</p>
+    <p>Projet indépendant · Les votes en ligne ne constituent pas un sondage représentatif.</p>
   </footer>
 
   <script>
     "use strict";
 
-    // -------------------------------------------------------
     // CONFIGURATION SUPABASE
-    // La clé publishable est conçue pour une utilisation publique.
-    // Les politiques RLS de la base doivent protéger les données.
-    // -------------------------------------------------------
     const SUPABASE_URL = "https://uxhiuusjdateqwjeueoy.supabase.co";
     const SUPABASE_KEY = "sb_publishable_NjjvqEdf7iYJ-VXY8Gmuxw_wwvfWM5U";
 
     const VOTES_TABLE = "proposal_votes";
     const COMMENTS_TABLE = "proposal_comments";
-
-    // Identifiant local utilisé pour retrouver le vote de ce navigateur.
-    // Il ne constitue pas une preuve d'identité : un visiteur peut le réinitialiser.
-    const VISITOR_STORAGE_KEY = "parolelyceenne_visitor_id";
+    const VISITOR_KEY = "parolelyceenne_visitor_id";
 
     function getVisitorId() {
-      let id = localStorage.getItem(VISITOR_STORAGE_KEY);
+      let id = localStorage.getItem(VISITOR_KEY);
 
       if (!id) {
-        if (crypto && typeof crypto.randomUUID === "function") {
-          id = crypto.randomUUID();
-        } else {
-          id = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, c => {
-            const r = Math.random() * 16 | 0;
-            return (c === "x" ? r : (r & 3 | 8)).toString(16);
-          });
-        }
-        localStorage.setItem(VISITOR_STORAGE_KEY, id);
+        id = crypto.randomUUID();
+        localStorage.setItem(VISITOR_KEY, id);
       }
 
       return id;
@@ -610,119 +548,113 @@
 
     const visitorId = getVisitorId();
 
-    // Les propositions sont éditables ici.
+    // LES 10 PROPOSITIONS
     const proposals = [
       {
         id: 1,
         title: "Mieux répartir les devoirs et les évaluations",
         category: "Organisation",
-        intro: "Éviter que plusieurs gros contrôles et devoirs importants s'accumulent le même jour.",
-        problem: "Une semaine peut devenir très chargée lorsque plusieurs matières prévoient une évaluation importante au même moment.",
-        solution: "Encourager une coordination entre enseignants pour mieux répartir les évaluations majeures, avec un calendrier accessible aux élèves.",
-        actions: "Mettre en place un calendrier commun par classe et échanger régulièrement entre enseignants.",
-        limits: "Les imprévus et les différences entre matières rendent impossible une répartition parfaite."
+        intro: "Éviter que plusieurs gros contrôles s'accumulent le même jour.",
+        problem: "Plusieurs évaluations importantes peuvent tomber au même moment et rendre une semaine très chargée.",
+        solution: "Encourager une coordination entre enseignants pour répartir les évaluations majeures.",
+        actions: "Créer un calendrier commun par classe et échanger régulièrement entre enseignants.",
+        limits: "Les imprévus et les différences entre matières empêchent une répartition parfaite."
       },
       {
         id: 2,
         title: "Mieux prendre en compte la fatigue des lycéens",
         category: "Bien-être",
-        intro: "Réfléchir aux journées trop longues et à l'enchaînement des cours pour favoriser l'attention.",
-        problem: "Des journées très denses peuvent rendre la concentration plus difficile, notamment après plusieurs heures de cours.",
+        intro: "Réfléchir aux journées trop longues et aux enchaînements de cours.",
+        problem: "Des journées denses peuvent rendre la concentration plus difficile.",
         solution: "Étudier les emplois du temps pour limiter autant que possible les longues journées et les heures creuses inutiles.",
-        actions: "Recueillir les emplois du temps et les retours des élèves, puis discuter des améliorations possibles avec l'établissement.",
-        limits: "Les salles disponibles, les transports et les contraintes des enseignants limitent les changements possibles."
+        actions: "Recueillir les retours des élèves et discuter des améliorations avec l'établissement.",
+        limits: "Les salles, les transports et les contraintes des enseignants limitent les changements."
       },
       {
         id: 3,
         title: "Rendre les emplois du temps plus lisibles",
         category: "Organisation",
-        intro: "Permettre aux élèves de mieux anticiper leurs journées et leurs semaines.",
-        problem: "Les changements de salle, les modifications de dernière minute et les trous peuvent compliquer l'organisation.",
-        solution: "Centraliser les informations importantes et prévenir les élèves rapidement en cas de changement.",
+        intro: "Permettre aux élèves de mieux anticiper leurs journées.",
+        problem: "Les changements de salle et les modifications de dernière minute compliquent l'organisation.",
+        solution: "Centraliser les informations et prévenir rapidement les élèves en cas de changement.",
         actions: "Améliorer l'affichage numérique et préciser les changements dès qu'ils sont confirmés.",
-        limits: "Les modifications urgentes ne peuvent pas toujours être annoncées longtemps à l'avance."
+        limits: "Les modifications urgentes ne peuvent pas toujours être annoncées à l'avance."
       },
       {
         id: 4,
         title: "Développer l'aide entre élèves",
         category: "Apprentissage",
-        intro: "Faciliter l'entraide pour comprendre les cours et réviser sans remplacer les enseignants.",
-        problem: "Certains élèves n'osent pas poser leurs questions en classe ou ne peuvent pas facilement obtenir de l'aide après les cours.",
-        solution: "Proposer des séances de tutorat volontaires, encadrées et accessibles, avec des élèves volontaires et des adultes référents.",
-        actions: "Organiser des créneaux au CDI ou dans une salle disponible et mettre en relation les élèves qui souhaitent participer.",
-        limits: "Le tutorat doit rester volontaire, supervisé et ne pas devenir une charge supplémentaire pour les élèves."
+        intro: "Faciliter l'entraide pour comprendre les cours et réviser.",
+        problem: "Certains élèves n'osent pas poser leurs questions ou ont du mal à obtenir de l'aide.",
+        solution: "Proposer du tutorat volontaire et encadré, sans remplacer les enseignants.",
+        actions: "Organiser des créneaux au CDI ou dans une salle disponible.",
+        limits: "Le tutorat doit rester volontaire et ne pas devenir une charge supplémentaire."
       },
       {
         id: 5,
-        title: "Améliorer la qualité de la restauration scolaire",
+        title: "Améliorer la restauration scolaire",
         category: "Restauration",
-        intro: "Donner davantage de place aux retours des élèves sur les repas et les conditions du déjeuner.",
-        problem: "Les élèves peuvent avoir le sentiment que leurs remarques sur les repas, les quantités ou l'attente sont peu prises en compte.",
-        solution: "Organiser des retours réguliers et examiner les possibilités d'amélioration avec les responsables de la restauration.",
+        intro: "Mieux prendre en compte les retours sur les repas et le déjeuner.",
+        problem: "Les élèves peuvent avoir le sentiment que leurs remarques sur les repas ou l'attente ne sont pas entendues.",
+        solution: "Organiser des retours réguliers avec les responsables de la restauration.",
         actions: "Mettre en place un questionnaire périodique et un échange avec les représentants des élèves.",
-        limits: "Les budgets, les règles nutritionnelles, les approvisionnements et les contraintes de service doivent être respectés."
+        limits: "Le budget, les règles nutritionnelles et les approvisionnements doivent être respectés."
       },
       {
         id: 6,
         title: "Mieux faire connaître les aides disponibles",
         category: "Bien-être",
-        intro: "Rendre plus faciles à trouver les personnes et dispositifs qui peuvent aider un élève.",
-        problem: "Il n'est pas toujours évident de savoir à qui s'adresser en cas de difficulté scolaire, administrative ou personnelle.",
-        solution: "Créer une page ou un affichage clair indiquant les adultes référents, les horaires et les dispositifs d'aide.",
+        intro: "Rendre les personnes et les dispositifs d'aide plus faciles à trouver.",
+        problem: "Il n'est pas toujours évident de savoir à qui s'adresser en cas de difficulté.",
+        solution: "Créer une page ou un affichage clair indiquant les adultes référents et les dispositifs d'aide.",
         actions: "Rassembler les informations validées par l'établissement et les actualiser régulièrement.",
-        limits: "Les situations personnelles doivent être traitées de manière confidentielle par les personnes compétentes."
+        limits: "Les situations personnelles doivent rester confidentielles."
       },
       {
         id: 7,
         title: "Donner plus de place à la parole des élèves",
         category: "Démocratie",
-        intro: "Faire remonter les propositions et les problèmes de manière structurée.",
+        intro: "Faire remonter les idées et les problèmes de manière structurée.",
         problem: "Certains élèves ne savent pas comment faire remonter une idée ou pensent que leur avis ne sera pas examiné.",
         solution: "Organiser des consultations régulières et communiquer les suites données aux propositions.",
-        actions: "Utiliser les délégués, les instances lycéennes et des questionnaires avec des réponses publiques lorsque c'est possible.",
-        limits: "Une consultation ne garantit pas qu'une demande sera retenue : les décisions doivent respecter les règles et les moyens disponibles."
+        actions: "Utiliser les délégués, les instances lycéennes et des questionnaires.",
+        limits: "Une consultation ne garantit pas qu'une demande sera retenue."
       },
       {
         id: 8,
         title: "Mieux accompagner l'orientation",
         category: "Orientation",
-        intro: "Aider les lycéens à découvrir les formations et les métiers avant les choix importants.",
-        problem: "Les informations peuvent sembler complexes et certains élèves connaissent mal les possibilités qui s'offrent à eux.",
-        solution: "Multiplier les occasions de découvrir les filières, les formations, les métiers et les parcours possibles.",
-        actions: "Proposer des rencontres, des témoignages d'étudiants et de professionnels, ainsi que des ressources fiables.",
-        limits: "Les parcours doivent être présentés de façon réaliste, sans garantir l'accès à une formation ou à un métier."
+        intro: "Découvrir les formations et les métiers avant les choix importants.",
+        problem: "Les informations peuvent sembler complexes et les possibilités sont parfois mal connues.",
+        solution: "Multiplier les occasions de découvrir les filières, les formations et les métiers.",
+        actions: "Organiser des rencontres, des témoignages et partager des ressources fiables.",
+        limits: "Aucun parcours ne garantit l'accès à une formation ou à un métier."
       },
       {
         id: 9,
         title: "Améliorer les espaces de travail et de pause",
         category: "Bien-être",
-        intro: "Permettre aux élèves de travailler au calme ou de se poser dans les espaces autorisés.",
-        problem: "Selon les établissements, les espaces disponibles peuvent être insuffisants, bruyants ou mal adaptés à certains usages.",
-        solution: "Évaluer les espaces existants et voir s'il est possible de mieux organiser le CDI, les salles accessibles ou les zones de pause.",
-        actions: "Demander les besoins des élèves et tester des aménagements simples avec l'établissement.",
-        limits: "La sécurité, la surveillance, l'accessibilité et la disponibilité des locaux restent prioritaires."
+        intro: "Permettre aux élèves de travailler au calme ou de se poser.",
+        problem: "Les espaces disponibles peuvent être insuffisants, bruyants ou mal adaptés.",
+        solution: "Évaluer les espaces existants et étudier les possibilités d'aménagement.",
+        actions: "Demander les besoins des élèves et tester des changements simples.",
+        limits: "La sécurité, l'accessibilité et la disponibilité des locaux restent prioritaires."
       },
       {
         id: 10,
         title: "Mieux expliquer les décisions du lycée",
         category: "Démocratie",
-        intro: "Comprendre pourquoi certaines règles ou demandes sont acceptées, refusées ou reportées.",
-        problem: "Lorsqu'une décision est peu expliquée, elle peut donner l'impression d'être arbitraire, même lorsqu'elle répond à une contrainte réelle.",
-        solution: "Communiquer les raisons principales des décisions et, lorsque c'est possible, les contraintes rencontrées.",
-        actions: "Prévoir des bilans courts après les consultations et publier les réponses aux questions les plus fréquentes.",
-        limits: "Certaines informations ne peuvent pas être rendues publiques, notamment lorsqu'elles concernent des personnes."
+        intro: "Comprendre pourquoi certaines demandes sont acceptées ou refusées.",
+        problem: "Une décision peu expliquée peut sembler arbitraire, même lorsqu'elle répond à une contrainte réelle.",
+        solution: "Communiquer les raisons principales des décisions et les contraintes rencontrées.",
+        actions: "Prévoir des bilans après les consultations et répondre aux questions fréquentes.",
+        limits: "Certaines informations ne peuvent pas être rendues publiques."
       }
     ];
 
-    const state = {
-      votes: [],
-      comments: [],
-      loading: true,
-      error: ""
-    };
-
+    const state = { votes: [], comments: [], loading: true };
     const grid = document.getElementById("proposalGrid");
-    const notice = document.getElementById("connectionNotice");
+    const notice = document.getElementById("notice");
     const searchInput = document.getElementById("searchInput");
     const categoryFilter = document.getElementById("categoryFilter");
     const sortSelect = document.getElementById("sortSelect");
@@ -740,25 +672,18 @@
     function showNotice(message, type = "") {
       notice.textContent = message;
       notice.className = "notice" + (type ? " " + type : "");
-      notice.classList.remove("hidden");
     }
 
-    function hideNotice() {
-      notice.classList.add("hidden");
-    }
-
-    async function supabaseRequest(table, options = {}) {
-      const { method = "GET", query = "", body = null, prefer = "" } = options;
+    async function db(table, { method = "GET", query = "", body = null, prefer = "" } = {}) {
       const url = `${SUPABASE_URL}/rest/v1/${table}${query ? "?" + query : ""}`;
-
       const headers = {
-        "apikey": SUPABASE_KEY,
-        "Authorization": `Bearer ${SUPABASE_KEY}`,
-        "Accept": "application/json"
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`,
+        Accept: "application/json"
       };
 
       if (body !== null) headers["Content-Type"] = "application/json";
-      if (prefer) headers["Prefer"] = prefer;
+      if (prefer) headers.Prefer = prefer;
 
       const response = await fetch(url, {
         method,
@@ -766,23 +691,18 @@
         body: body === null ? undefined : JSON.stringify(body)
       });
 
-      const text = await response.text();
+      const raw = await response.text();
       let data = null;
 
-      if (text) {
-        try {
-          data = JSON.parse(text);
-        } catch {
-          data = text;
-        }
-      }
+      try { data = raw ? JSON.parse(raw) : null; }
+      catch { data = raw; }
 
       if (!response.ok) {
         const detail = data && typeof data === "object"
-          ? (data.message || data.details || data.hint || JSON.stringify(data))
+          ? (data.message || data.details || JSON.stringify(data))
           : String(data || response.statusText);
 
-        throw new Error(`Supabase (${response.status}) : ${detail}`);
+        throw new Error(`Supabase ${response.status} : ${detail}`);
       }
 
       return data;
@@ -793,22 +713,20 @@
 
       try {
         const [votes, comments] = await Promise.all([
-          supabaseRequest(VOTES_TABLE, {
+          db(VOTES_TABLE, {
             query: "select=proposal_id,visitor_id,choice"
           }),
-          supabaseRequest(COMMENTS_TABLE, {
+          db(COMMENTS_TABLE, {
             query: "select=id,proposal_id,author_name,message,created_at&order=created_at.desc"
           })
         ]);
 
         state.votes = Array.isArray(votes) ? votes : [];
         state.comments = Array.isArray(comments) ? comments : [];
-        state.error = "";
-        hideNotice();
+        notice.classList.add("hidden");
       } catch (error) {
-        state.error = error.message || "Erreur de connexion à Supabase.";
         showNotice(
-          "Impossible de charger les données partagées. Vérifie la clé, les tables et les politiques RLS. Détail : " + state.error,
+          "Impossible de charger les données Supabase. Vérifie les tables, les politiques RLS et la connexion. Détail : " + error.message,
           "error"
         );
       } finally {
@@ -817,22 +735,22 @@
       }
     }
 
-    function getProposalVotes(proposalId) {
-      const votes = state.votes.filter(v => Number(v.proposal_id) === proposalId);
-      const yes = votes.filter(v => v.choice === "yes").length;
-      const no = votes.filter(v => v.choice === "no").length;
-      return { yes, no, total: yes + no };
+    function getVotes(id) {
+      const list = state.votes.filter(v => Number(v.proposal_id) === id);
+      const yes = list.filter(v => v.choice === "yes").length;
+      const neutral = list.filter(v => v.choice === "neutral").length;
+      const no = list.filter(v => v.choice === "no").length;
+      return { yes, neutral, no, total: yes + neutral + no };
     }
 
-    function getMyVote(proposalId) {
-      const vote = state.votes.find(v =>
-        Number(v.proposal_id) === proposalId && v.visitor_id === visitorId
-      );
-      return vote ? vote.choice : "";
+    function getMyVote(id) {
+      return state.votes.find(v =>
+        Number(v.proposal_id) === id && v.visitor_id === visitorId
+      )?.choice || "";
     }
 
-    function getProposalComments(proposalId) {
-      return state.comments.filter(c => Number(c.proposal_id) === proposalId);
+    function getComments(id) {
+      return state.comments.filter(c => Number(c.proposal_id) === id);
     }
 
     function formatDate(value) {
@@ -840,85 +758,100 @@
       const date = new Date(value);
       if (Number.isNaN(date.getTime())) return "";
       return date.toLocaleDateString("fr-FR", {
-        day: "2-digit",
-        month: "short",
-        year: "numeric"
+        day: "2-digit", month: "short", year: "numeric"
       });
     }
 
-    function renderCard(proposal) {
-      const votes = getProposalVotes(proposal.id);
-      const comments = getProposalComments(proposal.id);
-      const myVote = getMyVote(proposal.id);
-      const yesPercent = votes.total ? Math.round(votes.yes / votes.total * 100) : 0;
+    function renderCard(p) {
+      const v = getVotes(p.id);
+      const myVote = getMyVote(p.id);
+      const comments = getComments(p.id);
+      const yesWidth = v.total ? v.yes / v.total * 100 : 0;
+      const neutralWidth = v.total ? v.neutral / v.total * 100 : 0;
+      const noWidth = v.total ? v.no / v.total * 100 : 0;
 
       const commentHtml = comments.length
-        ? comments.map(comment => `
+        ? comments.map(c => `
           <article class="comment">
-            <strong>${escapeHtml(comment.author_name || "Lycéen·ne")}</strong>
-            <time>${escapeHtml(formatDate(comment.created_at))}</time>
-            <p>${escapeHtml(comment.message)}</p>
+            <strong>${escapeHtml(c.author_name || "Lycéen·ne")}</strong>
+            <time>${escapeHtml(formatDate(c.created_at))}</time>
+            <p>${escapeHtml(c.message)}</p>
           </article>
         `).join("")
-        : `<p class="empty-comments">Pas encore de commentaire. Lance la discussion !</p>`;
+        : `<p class="empty">Pas encore de commentaire. Lance la discussion !</p>`;
+
+      const currentVote = myVote === "yes" ? "oui"
+        : myVote === "no" ? "non"
+        : myVote === "neutral" ? "neutre" : "";
 
       return `
-        <article class="proposal-card" id="proposal-${proposal.id}">
+        <article class="card" id="proposal-${p.id}">
           <div class="card-top">
-            <span class="proposal-number">${String(proposal.id).padStart(2, "0")}</span>
-            <span class="category">${escapeHtml(proposal.category)}</span>
+            <span class="number">${String(p.id).padStart(2, "0")}</span>
+            <span class="category">${escapeHtml(p.category)}</span>
           </div>
 
           <div class="card-content">
-            <h3>${escapeHtml(proposal.title)}</h3>
-            <p class="intro">${escapeHtml(proposal.intro)}</p>
+            <h3>${escapeHtml(p.title)}</h3>
+            <p class="intro">${escapeHtml(p.intro)}</p>
 
-            <details class="details">
+            <details>
               <summary>Comprendre la proposition</summary>
-              <div class="details-body">
-                <p><strong>Le constat :</strong> ${escapeHtml(proposal.problem)}</p>
-                <p><strong>La proposition :</strong> ${escapeHtml(proposal.solution)}</p>
-                <p><strong>Comment avancer :</strong> ${escapeHtml(proposal.actions)}</p>
-                <p><strong>Les limites :</strong> ${escapeHtml(proposal.limits)}</p>
+              <div class="detail-text">
+                <p><strong>Le constat :</strong> ${escapeHtml(p.problem)}</p>
+                <p><strong>La proposition :</strong> ${escapeHtml(p.solution)}</p>
+                <p><strong>Comment avancer :</strong> ${escapeHtml(p.actions)}</p>
+                <p><strong>Les limites :</strong> ${escapeHtml(p.limits)}</p>
               </div>
             </details>
           </div>
 
-          <section class="vote-area" aria-label="Vote sur la proposition ${proposal.id}">
+          <section class="vote-area">
             <div class="vote-heading">
-              <span>Tu es pour ou contre ?</span>
-              <span class="vote-counts">${votes.total} vote${votes.total > 1 ? "s" : ""}</span>
+              <span>Tu es pour, neutre ou contre ?</span>
+              <span class="vote-counts">${v.total} vote${v.total > 1 ? "s" : ""}</span>
             </div>
-            <div class="vote-bar" aria-label="${yesPercent}% de votes oui">
-              <div class="vote-yes" style="width:${yesPercent}%"></div>
-              <div class="vote-no"></div>
+
+            <div class="vote-bar" aria-label="Répartition des votes">
+              <div class="vote-yes" style="width:${yesWidth}%"></div>
+              <div class="vote-neutral" style="width:${neutralWidth}%"></div>
+              <div class="vote-no" style="width:${noWidth}%"></div>
             </div>
+
             <div class="vote-buttons">
               <button class="vote-button yes ${myVote === "yes" ? "selected" : ""}"
-                data-vote="yes" data-id="${proposal.id}"
-                aria-pressed="${myVote === "yes"}">
-                Oui · ${votes.yes}
+                data-vote="yes" data-id="${p.id}" aria-pressed="${myVote === "yes"}">
+                Oui · ${v.yes}
               </button>
+
+              <button class="vote-button neutral ${myVote === "neutral" ? "selected" : ""}"
+                data-vote="neutral" data-id="${p.id}" aria-pressed="${myVote === "neutral"}">
+                Neutre · ${v.neutral}
+              </button>
+
               <button class="vote-button no ${myVote === "no" ? "selected" : ""}"
-                data-vote="no" data-id="${proposal.id}"
-                aria-pressed="${myVote === "no"}">
-                Non · ${votes.no}
+                data-vote="no" data-id="${p.id}" aria-pressed="${myVote === "no"}">
+                Non · ${v.no}
               </button>
             </div>
+
             <p class="vote-note">
-              ${myVote ? "Ton vote actuel : " + (myVote === "yes" ? "oui" : "non") + ". Tu peux le modifier." : "Un vote par navigateur et par proposition, dans les limites du système actuel."}
+              ${myVote
+                ? "Ton vote actuel : " + currentVote + ". Tu peux le modifier."
+                : "Choisis une réponse. Tu pourras changer ton vote plus tard."}
             </p>
           </section>
 
-          <section class="comments" aria-label="Commentaires sur la proposition ${proposal.id}">
+          <section class="comments">
             <h4>Discussion (${comments.length})</h4>
             <div class="comment-list">${commentHtml}</div>
-            <form class="comment-form" data-comment-form="${proposal.id}">
+
+            <form class="comment-form" data-comment-form="${p.id}">
               <input class="field" name="author" maxlength="40"
-                placeholder="Ton pseudo (facultatif)" aria-label="Ton pseudo">
-              <textarea class="field" name="message" maxlength="1000"
-                placeholder="Donne ton avis, propose une amélioration…" required
-                aria-label="Ton commentaire"></textarea>
+                placeholder="Ton pseudo (facultatif)" aria-label="Pseudo">
+              <textarea class="field" name="message" maxlength="1000" required
+                placeholder="Donne ton avis, propose une amélioration…"
+                aria-label="Commentaire"></textarea>
               <button class="btn btn-red" type="submit">Publier le commentaire</button>
             </form>
           </section>
@@ -931,57 +864,52 @@
       const category = categoryFilter.value;
       const sort = sortSelect.value;
 
-      let visible = proposals.filter(proposal => {
-        const matchesSearch = [
-          proposal.title, proposal.intro, proposal.problem,
-          proposal.solution, proposal.category
-        ].join(" ").toLocaleLowerCase("fr").includes(search);
+      let visible = proposals.filter(p => {
+        const searchable = [
+          p.title, p.intro, p.problem, p.solution, p.category
+        ].join(" ").toLocaleLowerCase("fr");
 
-        const matchesCategory = category === "all" || proposal.category === category;
-        return matchesSearch && matchesCategory;
+        return searchable.includes(search) &&
+          (category === "all" || p.category === category);
       });
 
       if (sort === "votes") {
-        visible.sort((a, b) => getProposalVotes(b.id).total - getProposalVotes(a.id).total);
+        visible.sort((a, b) => getVotes(b.id).total - getVotes(a.id).total);
       } else if (sort === "yes") {
         visible.sort((a, b) => {
-          const av = getProposalVotes(a.id);
-          const bv = getProposalVotes(b.id);
-          const ap = av.total ? av.yes / av.total : 0;
-          const bp = bv.total ? bv.yes / bv.total : 0;
-          return bp - ap || bv.total - av.total;
+          const av = getVotes(a.id);
+          const bv = getVotes(b.id);
+          const ar = av.total ? av.yes / av.total : 0;
+          const br = bv.total ? bv.yes / bv.total : 0;
+          return br - ar || bv.total - av.total;
         });
       } else if (sort === "comments") {
-        visible.sort((a, b) => getProposalComments(b.id).length - getProposalComments(a.id).length);
+        visible.sort((a, b) => getComments(b.id).length - getComments(a.id).length);
       }
 
-      if (state.loading && !state.votes.length && !state.comments.length) {
-        grid.innerHTML = `<div class="loading">Chargement des propositions…</div>`;
-      } else if (!visible.length) {
-        grid.innerHTML = `<div class="loading">Aucune proposition ne correspond à ta recherche.</div>`;
+      if (!visible.length) {
+        grid.innerHTML = `<p class="empty">Aucune proposition ne correspond à ta recherche.</p>`;
       } else {
         grid.innerHTML = visible.map(renderCard).join("");
       }
 
-      const totalVotes = state.votes.length;
       document.getElementById("statProposals").textContent = proposals.length;
-      document.getElementById("statVotes").textContent = totalVotes.toLocaleString("fr-FR");
+      document.getElementById("statVotes").textContent = state.votes.length.toLocaleString("fr-FR");
       document.getElementById("statComments").textContent = state.comments.length.toLocaleString("fr-FR");
     }
 
-    async function submitVote(proposalId, choice, button) {
-      if (!["yes", "no"].includes(choice)) return;
+    async function submitVote(id, choice, button) {
+      if (!["yes", "neutral", "no"].includes(choice)) return;
 
       button.disabled = true;
 
       try {
-        // Si ce navigateur a déjà voté, le vote existant est mis à jour.
-        await supabaseRequest(VOTES_TABLE, {
+        await db(VOTES_TABLE, {
           method: "POST",
           query: "on_conflict=proposal_id,visitor_id",
           prefer: "resolution=merge-duplicates,return=minimal",
           body: {
-            proposal_id: proposalId,
+            proposal_id: id,
             visitor_id: visitorId,
             choice
           }
@@ -990,47 +918,45 @@
         await loadData();
         showNotice("Ton vote a bien été enregistré !", "success");
       } catch (error) {
-        showNotice("Le vote n'a pas pu être enregistré. Vérifie les politiques RLS et la contrainte unique dans Supabase. Détail : " + error.message, "error");
+        showNotice(
+          "Impossible d'enregistrer ton vote. Vérifie la contrainte unique et les politiques RLS. Détail : " + error.message,
+          "error"
+        );
       } finally {
         button.disabled = false;
       }
     }
 
-    async function submitComment(form, proposalId) {
-      const authorInput = form.elements.author;
-      const messageInput = form.elements.message;
+    async function submitComment(form, id) {
+      const author = form.elements.author.value.trim().slice(0, 40) || "Lycéen·ne";
+      const message = form.elements.message.value.trim();
       const button = form.querySelector('button[type="submit"]');
 
-      const author = authorInput.value.trim().slice(0, 40) || "Lycéen·ne";
-      const message = messageInput.value.trim();
-
       if (!message) {
-        messageInput.focus();
-        return;
-      }
-
-      if (message.length > 1000) {
-        showNotice("Le commentaire est limité à 1 000 caractères.", "error");
+        form.elements.message.focus();
         return;
       }
 
       button.disabled = true;
 
       try {
-        await supabaseRequest(COMMENTS_TABLE, {
+        await db(COMMENTS_TABLE, {
           method: "POST",
           prefer: "return=minimal",
           body: {
-            proposal_id: proposalId,
+            proposal_id: id,
             author_name: author,
             message
           }
         });
 
         await loadData();
-        showNotice("Ton commentaire a été publié !", "success");
+        showNotice("Ton commentaire a bien été publié !", "success");
       } catch (error) {
-        showNotice("Le commentaire n'a pas pu être publié. Vérifie les politiques RLS de Supabase. Détail : " + error.message, "error");
+        showNotice(
+          "Impossible de publier le commentaire. Vérifie les politiques RLS. Détail : " + error.message,
+          "error"
+        );
       } finally {
         button.disabled = false;
       }
@@ -1040,11 +966,10 @@
       const button = event.target.closest("button[data-vote]");
       if (!button) return;
 
-      const proposalId = Number(button.dataset.id);
-      const choice = button.dataset.vote;
+      const id = Number(button.dataset.id);
+      if (!proposals.some(p => p.id === id)) return;
 
-      if (!proposals.some(p => p.id === proposalId)) return;
-      submitVote(proposalId, choice, button);
+      submitVote(id, button.dataset.vote, button);
     });
 
     grid.addEventListener("submit", event => {
@@ -1052,18 +977,17 @@
       if (!form) return;
 
       event.preventDefault();
-      const proposalId = Number(form.dataset.commentForm);
 
-      if (!proposals.some(p => p.id === proposalId)) return;
-      submitComment(form, proposalId);
+      const id = Number(form.dataset.commentForm);
+      if (!proposals.some(p => p.id === id)) return;
+
+      submitComment(form, id);
     });
 
     searchInput.addEventListener("input", render);
     categoryFilter.addEventListener("change", render);
     sortSelect.addEventListener("change", render);
 
-    // Affiche les propositions immédiatement, puis charge les données partagées.
-    state.loading = false;
     render();
     loadData();
   </script>
